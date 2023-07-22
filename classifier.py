@@ -2,7 +2,7 @@ import torch
 import gzip
 import numpy as np
 
-def classifier(training_set, testing_set, k=5)
+def classifier(training_set, testing_set, k=5):
 
     test_labels = []
     for (x1 , y1) in testing_set:
