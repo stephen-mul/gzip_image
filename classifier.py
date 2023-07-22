@@ -45,6 +45,10 @@ class classifier:
             self.combine = lambda x1, x2: normalise(x1*x2, 0.1307, 0.3081)
         elif mode=='mult' and not normalise_combined:
             self.combine = lambda x1, x2: x1*x2
+        elif mode=='hadamard' and normalise_combined:
+            self.combine = lambda x1, x2: normalise(np.multiply(x1, x2))
+        elif mode=='hadamard' and not normalise_combined:
+            self.combine = lambda x1, x2: np.multiply(x1, x2)
 
     def classify(self):
         test_labels = []
