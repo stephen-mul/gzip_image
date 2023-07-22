@@ -48,7 +48,7 @@ class classifier:
 
     def classify(self):
         test_labels = []
-        for (x1 , y1) in self.classifytesting_set:
+        for (x1 , y1) in self.testing_set:
             x1 = x1.numpy()
             Cx1 = len(gzip.compress(x1))
             distance_from_x1 = []
