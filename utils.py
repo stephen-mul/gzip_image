@@ -12,3 +12,6 @@ def get_accuracy(test_labels):
             miss += 1
     print(f'Correct: {hit} \n Incorrect: {miss}')
     return hit, miss
+
+def normalise(array, mean=0.5, std=0.5):
+    return (array-mean)/(std)
