@@ -30,7 +30,7 @@ class cifar10_loader:
                                                                 train=train,
                                                                 transform=transforms.Compose([
                                                                     transforms.ToTensor(), # first, convert image to PyTorch tensor
-                                                                    transforms.Graycale(),
+                                                                    transforms.Grayscale(),
                                                                     transforms.Normalize((0.1307,), (0.3081,)) # normalize inputs
                                                                 ])),
                                                 batch_size=batch,
