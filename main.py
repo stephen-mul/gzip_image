@@ -12,7 +12,10 @@ def main():
     training_set = train_loader.get_set(config.train_size)
     testing_set = test_loader.get_set(config.test_size)
 
-    test_labels = classifier(training_set=training_set, testing_set=testing_set, k=config.k)
+    mnist_classifier = classifier(training_set, testing_set, k=config.k, mode='add', normalise_combined=False)
+    test_labels = mnist_classifier.classify()
+
+    #test_labels = classifier(training_set=training_set, testing_set=testing_set, k=config.k)
 
     get_accuracy(test_labels=test_labels)
 
