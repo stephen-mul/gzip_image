@@ -1,7 +1,7 @@
 import torch
 import gzip
 import numpy as np
-import tqdm
+from tqdm import tqdm
 
 from utils import normalise
 
