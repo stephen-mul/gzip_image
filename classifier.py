@@ -1,6 +1,7 @@
 import torch
 import gzip
 import numpy as np
+import tqdm
 
 from utils import normalise
 
@@ -52,7 +53,7 @@ class classifier:
 
     def classify(self):
         test_labels = []
-        for (x1 , y1) in self.testing_set:
+        for (x1 , y1) in tqdm(self.testing_set):
             x1 = x1.numpy()
             Cx1 = len(gzip.compress(x1))
             distance_from_x1 = []
