@@ -12,6 +12,10 @@ def main():
         from dataloaders import cifar10_loader
         train_loader = cifar10_loader(batch=1, train=True)
         test_loader = cifar10_loader(batch=1, train=False)
+    elif config.dataset =='CIFAR10':
+        from dataloaders import fashion_mnist_loader
+        train_loader = fashion_mnist_loader(batch=1, train=True)
+        test_loader = fashion_mnist_loader(batch=1, train=False)
 
     training_set = train_loader.get_set(config.train_size)
     testing_set = test_loader.get_set(config.test_size)
