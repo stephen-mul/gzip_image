@@ -8,7 +8,7 @@ class mnist_loader:
                                                                 train=train,
                                                                 transform=transforms.Compose([
                                                                     transforms.ToTensor(), # first, convert image to PyTorch tensor
-                                                                    transforms.Normalize((0.1307,), (0.3081,)) # normalize inputs
+                                                                    transforms.Normalize((0.5), (0.5)) # normalize inputs
                                                                 ])),
                                                 batch_size=batch,
                                                 shuffle=True)

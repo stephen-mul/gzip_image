@@ -39,11 +39,11 @@ class classifier:
         self.testing_set = testing_set
         self.k = k
         if mode=='add' and normalise_combined:
-            self.combine = lambda x1, x2: normalise(x1+x2, 0.1307, 0.3081)
+            self.combine = lambda x1, x2: normalise(x1+x2, 0.5, 0.5)
         elif mode=='add' and not normalise_combined:
             self.combine = lambda x1, x2: x1 + x2
         elif mode=='mult' and normalise_combined:
-            self.combine = lambda x1, x2: normalise(x1*x2, 0.1307, 0.3081)
+            self.combine = lambda x1, x2: normalise(x1*x2, 0.5, 0.5)
         elif mode=='mult' and not normalise_combined:
             self.combine = lambda x1, x2: x1*x2
         elif mode=='hadamard' and normalise_combined:
