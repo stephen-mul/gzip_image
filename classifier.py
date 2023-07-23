@@ -52,9 +52,7 @@ class classifier:
         elif mode=='hadamard' and not normalise_combined:
             self.combine = lambda x1, x2: np.multiply(x1, x2)
 
-        if compression_type=='None':
-            self.compress = lambda x: x
-        elif compression_type=='gzip':
+        if compression_type=='gzip':
             self.compress = lambda x: len(gzip.compress(x))
 
     def classify(self):
