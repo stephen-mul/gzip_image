@@ -6,7 +6,7 @@ Created on Sun Jul 23 13:31:53 2023
 """
 
 import config
-import tqdm
+from tqdm import tqdm
 import gzip
 import png
 
@@ -32,12 +32,20 @@ testing_set = test_loader.get_set(config.test_size)
 
 ####################
 
-def write_png(image, n=256):
+def get_png_len(image, n=256):
+    f.open()
     w = png.Writer(n, 1, greyscale=False)
     w.write(image, [range(n)])
+    return len(image)
     
-    
-
+gzip_len = []
+png_len = []
 for (x1 , y1) in tqdm(testing_set):
     x1 = x1.numpy()
-    Cx1 = len(gzip.compress(x1))
+    gzip_len.append(len(png.from_array(x1)))
+    png_len.append(get_png_len(x1))
+    
+#%%
+a = testing_set[0][0].numpy()len
+
+aa = png.from_array(a, mode="L")
