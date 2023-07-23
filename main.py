@@ -21,7 +21,8 @@ def main():
     testing_set = test_loader.get_set(config.test_size)
 
     mnist_classifier = classifier(training_set, testing_set, k=config.k, mode=config.mode, 
-                                  normalise_combined=config.normalise_combined)
+                                  normalise_combined=config.normalise_combined,
+                                  compression_type=config.compression_type)
     test_labels = mnist_classifier.classify()
 
     get_accuracy(test_labels=test_labels)
