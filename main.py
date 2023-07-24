@@ -25,7 +25,10 @@ def main(train_size=config.train_size, test_size=config.test_size):
                                   compression_type=config.compression_type)
     test_labels = mnist_classifier.classify()
 
-    get_accuracy(test_labels=test_labels)
+    hit, miss = get_accuracy(test_labels=test_labels)
+    # Return number of hit and misses if we are running an experiment
+    if config.experiment_name != 'None':
+        return hit, miss
 
 
 if __name__ == "__main__":
