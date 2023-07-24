@@ -34,10 +34,11 @@ from utils import normalise
 '''
 
 class classifier:
-    def __init__(self, training_set, testing_set, k, mode, normalise_combined) -> None:
+    def __init__(self, training_set, testing_set, k, mode, normalise_combined, compression_type) -> None:
         self.training_set = training_set
         self.testing_set = testing_set
         self.k = k
+
         if mode=='add' and normalise_combined:
             self.combine = lambda x1, x2: normalise(x1+x2, 0.5, 0.5)
         elif mode=='add' and not normalise_combined:
@@ -51,18 +52,21 @@ class classifier:
         elif mode=='hadamard' and not normalise_combined:
             self.combine = lambda x1, x2: np.multiply(x1, x2)
 
+        if compression_type=='gzip':
+            self.compress = lambda x: len(gzip.compress(x))
+
     def classify(self):
         test_labels = []
         for (x1 , y1) in tqdm(self.testing_set):
             x1 = x1.numpy()
-            Cx1 = len(gzip.compress(x1))
+            Cx1 = self.compress(x1)
             distance_from_x1 = []
             count = 0
             for (x2 , _) in self.training_set:
                 x2 = x2.numpy()
-                Cx2 = len(gzip.compress(x2))
+                Cx2 = self.compress(x2)
                 x1x2 = self.combine(x1, x2)
-                Cx1x2 = len(gzip.compress(x1x2))
+                Cx1x2 = self.compress(x1x2)
                 ncd = ( Cx1x2 - min( Cx1 , Cx2 ))/max(Cx1 , Cx2 )
                 distance_from_x1.append(ncd)
             sorted_idx = np.argsort(np.array(distance_from_x1))

@@ -4,3 +4,4 @@ test_size=100
 k=5
 mode='add'
 normalise_combined=False
+compression_type='gzip'
