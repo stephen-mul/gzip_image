@@ -21,6 +21,7 @@ if __name__ == '__main__':
             result_array[row_count, 0] = hit
             result_array[row_count, 1] = miss
             result_array[row_count, 2] = train_size
+            row_count += 1
         out_name = args.name
         if not os.path.exists('./results'):
             os.makedirs('./results')
