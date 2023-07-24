@@ -2,7 +2,7 @@ import config
 from classifier import classifier
 from utils import get_accuracy
 
-def main():
+def main(train_size=config.train_size, test_size=config.test_size):
 
     if config.dataset =='MNIST':
         from dataloaders import mnist_loader
@@ -17,15 +17,18 @@ def main():
         train_loader = fashion_mnist_loader(batch=1, train=True)
         test_loader = fashion_mnist_loader(batch=1, train=False)
 
-    training_set = train_loader.get_set(config.train_size)
-    testing_set = test_loader.get_set(config.test_size)
+    training_set = train_loader.get_set(train_size)
+    testing_set = test_loader.get_set(test_size)
 
     mnist_classifier = classifier(training_set, testing_set, k=config.k, mode=config.mode, 
                                   normalise_combined=config.normalise_combined,
                                   compression_type=config.compression_type)
     test_labels = mnist_classifier.classify()
 
-    get_accuracy(test_labels=test_labels)
+    hit, miss = get_accuracy(test_labels=test_labels)
+    # Return number of hit and misses if we are running an experiment
+    if config.experiment_name != 'None':
+        return hit, miss
 
 
 if __name__ == "__main__":
