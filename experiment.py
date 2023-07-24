@@ -15,7 +15,7 @@ if __name__ == '__main__':
         result_array = np.zeros((len(train_size_list), len(headers)))
         row_count = 0
         for train_size in train_size_list:
-            print(f'Testing with training set of size {train_size} and testing set of size' 
+            print(f'Testing with training set of size {train_size} and testing set of size ' 
                   f'{config.test_size}')
             hit, miss = main(train_size=train_size)
             result_array[row_count, 0] = hit
