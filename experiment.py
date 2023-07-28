@@ -24,7 +24,7 @@ if __name__ == '__main__':
             result_array[row_count, 0] = hit
             result_array[row_count, 1] = miss
             result_array[row_count, 2] = train_size
-            result_array[row_count, 2] = stop-start
+            result_array[row_count, 3] = stop-start
             row_count += 1
         out_name = args.name
         if not os.path.exists('./results'):
