@@ -2,7 +2,7 @@ import config
 from classifier import classifier
 from utils import get_accuracy
 
-def main(train_size=config.train_size, test_size=config.test_size):
+def main(train_size=config.train_size, test_size=config.test_size, k=config.k):
 
     if config.dataset =='MNIST':
         from dataloaders import mnist_loader
