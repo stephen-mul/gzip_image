@@ -48,7 +48,7 @@ if __name__ == '__main__':
             result_array[row_count, 1] = miss
             result_array[row_count, 2] = kn
             result_array[row_count, 3] = config.train_size
-            result_array[row_count, 5] = stop-start
+            result_array[row_count, 4] = stop-start
             row_count += 1
         out_name = args.name
         if not os.path.exists('./results'):
