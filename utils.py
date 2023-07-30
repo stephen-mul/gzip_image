@@ -21,4 +21,4 @@ def normalise(array, mean=0.5, std=0.5):
 def write_row(csv_path, row):
     with open(csv_path, "wb") as csv_file:
         writer = csv.writer(csv_file, delimiter=',')
-        writer.writerow(line)
+        writer.writerow(row)
