@@ -21,7 +21,7 @@ if __name__ == '__main__':
     if config.experiment_name=='TRAIN_SIZE':
         train_size_list = config.train_size_list
         headers = ['Correct', 'Incorrect', 'Training Set Size', 'Training Time']
-        write_row(file, headers)
+        write_row(file, headers, 'w')
         for train_size in train_size_list:
             print(f'Testing with training set of size {train_size} and testing set of size ' 
                   f'{config.test_size}')
