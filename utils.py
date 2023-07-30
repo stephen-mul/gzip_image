@@ -1,3 +1,5 @@
+import csv
+
 def mode(lst):
     return max(set(lst), key=lst.count)
 
@@ -15,3 +17,8 @@ def get_accuracy(test_labels):
 
 def normalise(array, mean=0.5, std=0.5):
     return (array-mean)/(std)
+
+def write_row(csv_path, row, mode='a'):
+    with open(csv_path, mode) as csv_file:
+        writer = csv.writer(csv_file, delimiter=',')
+        writer.writerow(row)
