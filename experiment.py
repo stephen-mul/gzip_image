@@ -56,7 +56,7 @@ if __name__ == '__main__':
               start = time.time()
               hit, miss = main(train_size, config.test_size, kn_list[count])
               stop = time.time()
-              row = [hit, miss, train_size, kn_list, stop-start]
+              row = [hit, miss, train_size, kn_list[count], stop-start]
               write_row(file, row)
               count+=1
 
