@@ -34,7 +34,7 @@ if __name__ == '__main__':
     elif config.experiment_name=='KN':
         kn_list = config.kn_list
         headers = ['Correct', 'Incorrect', 'KN', 'Training Set Size', 'Training Time']
-        write_row(file, headers)
+        write_row(file, headers, 'w')
         for kn in kn_list:
             print(f'Number of k nearest neighbours {kn}, training set of size {config.train_size} ' 
                     f'and testing set of size {config.test_size}')
