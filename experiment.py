@@ -44,6 +44,22 @@ if __name__ == '__main__':
             row = [hit, miss, kn, config.train_size, stop-start]
             write_row(file, row)
 
+    elif config.experiment_name=='FRAC_K':
+         train_size_list = config.frac_k_train_size_list
+         kn_list = [((train_size/10) -1) for train_size in train_size_list]
+         headers = ['Correct', 'Incorrect', 'Training Set Size', 'KN', 'Training Time']
+         write_row(file, headers, 'w')
+         count = 0
+         for train_size in train_size_list:
+              print(f'Number of k nearest neighbours {kn_list[count]}, training set of size {train_size} ' 
+                    f'and testing set of size {config.test_size}')
+              start = time.time()
+              hit, miss = main(train_size, config.test_size, kn_list[count])
+              stop = time.time()
+              row = [hit, miss, train_size, kn_list[count], stop-start]
+              write_row(file, row)
+              count+=1
+
     else:
-        print('Set config.experiment_name to a valid experiment type: TRAIN_SIZE , KN ')
+        print('Set config.experiment_name to a valid experiment type: TRAIN_SIZE , KN , FRAC_K')
 
