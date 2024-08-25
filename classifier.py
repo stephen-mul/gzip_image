@@ -1,4 +1,3 @@
-import torch
 import gzip
 import numpy as np
 from tqdm import tqdm
