@@ -1,6 +1,7 @@
 import config
 from classifier import classifier
 from utils import get_accuracy
+import time ### temporary import for benchmarking
 
 def main(train_size=config.train_size, test_size=config.test_size, k=config.k):
 
@@ -23,7 +24,11 @@ def main(train_size=config.train_size, test_size=config.test_size, k=config.k):
     mnist_classifier = classifier(training_set, testing_set, k=config.k, mode=config.mode, 
                                   normalise_combined=config.normalise_combined,
                                   compression_type=config.compression_type)
+    t_start = time.time()
     test_labels = mnist_classifier.classify()
+    t_stop = time.time()
+    print(f'Total classification time: {t_stop-t_start}')
+    print(f'Time per image: {(t_stop-t_start)/config.test_size}')
 
     hit, miss = get_accuracy(test_labels=test_labels)
     # Return number of hit and misses if we are running an experiment

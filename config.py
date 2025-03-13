@@ -1,7 +1,7 @@
 '''Basic config settings'''
 dataset='MNIST'
-train_size=200
-test_size=100
+train_size=30000
+test_size=3000
 k=5
 mode='add'
 normalise_combined=False
