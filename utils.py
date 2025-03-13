@@ -1,4 +1,7 @@
 import csv
+import yaml
+
+### misc ###
 
 def mode(lst):
     return max(set(lst), key=lst.count)
@@ -22,3 +25,11 @@ def write_row(csv_path, row, mode='a'):
     with open(csv_path, mode) as csv_file:
         writer = csv.writer(csv_file, delimiter=',')
         writer.writerow(row)
+
+
+### config ###
+
+def config_loader(config_path: str) -> dict:
+    with open(config_path, 'r') as f:
+        config = yaml.load(f, Loader=yaml.FullLoader)
+    return config
