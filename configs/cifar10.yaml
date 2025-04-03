@@ -1,0 +1,10 @@
+### basic settings ###
+dataset: CIFAR10
+n_train: 10000
+n_test: 100
+k: 5
+mode: add
+normalise_combined: False
+compression_type: gzip
+experiment_name: None
+output_dir: /home/stephen/local_workdir/personal/gzip_results/cifar10_default/

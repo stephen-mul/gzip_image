@@ -1,0 +1,9 @@
+### basic settings ###
+dataset: MNIST
+n_train: 1000
+n_test: 100
+k: 5
+mode: concat
+normalise_combined: False
+compression_type: gzip
+experiment_name: None

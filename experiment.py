@@ -5,8 +5,9 @@ import time
 import csv
 import pandas as pd
 import numpy as np
-from main import main
-from utils import write_row
+from main_old import main
+from utils import (write_row,
+                   config_loader)
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
