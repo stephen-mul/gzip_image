@@ -22,6 +22,11 @@ class classifier:
             self.combine = lambda x1, x2: normalise(np.multiply(x1, x2))
         elif mode=='hadamard' and not normalise_combined:
             self.combine = lambda x1, x2: np.multiply(x1, x2)
+        elif mode=='concat' and not normalise_combined:
+            self.combine = lambda x1, x2: np.concatenate((x1, x2), axis=0)
+        elif mode=='concat' and normalise_combined:
+            self.combine = lambda x1, x2: normalise(np.concatenate((x1, x2), axis=0))
+            
 
         if compression_type=='gzip':
             self.compress = lambda x: len(gzip.compress(x))

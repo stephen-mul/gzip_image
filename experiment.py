@@ -5,7 +5,7 @@ import time
 import csv
 import pandas as pd
 import numpy as np
-from main import main_old
+from main_old import main
 from utils import (write_row,
                    config_loader)
 
