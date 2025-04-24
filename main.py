@@ -4,7 +4,7 @@ import os
 import numpy as np
 import yaml
 
-from classifier import classifier
+from classifier import (classifier, MSEclassifier)
 from utils import (get_accuracy,
                    config_loader
                    )
@@ -65,13 +65,20 @@ def main():
     training_set = train_loader.get_set(train_size)
     testing_set = test_loader.get_set(test_size)
 
-    mnist_classifier = classifier(training_set, 
-                                  testing_set, 
-                                  k=k, 
-                                  mode=config['mode'], 
-                                  normalise_combined=config['normalise_combined'],
-                                  compression_type=config['compression_type']
-                                  )
+    if config['classifier'] == 'MSE':
+        print('Using MSE classifier')
+        mnist_classifier = MSEclassifier(training_set, 
+                                         testing_set, 
+                                         k=k, 
+                                         )
+    else:
+        mnist_classifier = classifier(training_set, 
+                                    testing_set, 
+                                    k=k, 
+                                    mode=config['mode'], 
+                                    normalise_combined=config['normalise_combined'],
+                                    compression_type=config['compression_type']
+                                    )
     t_start = time.time()
     test_labels = mnist_classifier.classify()
     t_stop = time.time()

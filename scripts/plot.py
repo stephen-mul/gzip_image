@@ -7,7 +7,6 @@ import matplotlib.pyplot as plt
 
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
 
-from dataloaders import mnist_loader
 from utils import config_loader
 
 def argparser():
@@ -68,12 +67,23 @@ def main():
         os.makedirs(output_dir)
 
     ### get some images ###
-    train_loader = mnist_loader(batch=1, train=True)
+    if config['dataset'] == 'MNIST':
+        from dataloaders import mnist_loader
+        train_loader = mnist_loader(batch=1, train=True)
+    elif config['dataset'] == 'CIFAR10':
+        from dataloaders import cifar10_loader
+        train_loader = cifar10_loader(batch=1, train=True)
+    elif config['dataset'] == 'FASHION':
+        from dataloaders import fashion_mnist_loader
+        train_loader = fashion_mnist_loader(batch=1, train=True)
+    else:
+        raise ValueError("Dataset not supported. Please choose from MNIST, CIFAR10, or FASHION.")
     images = train_loader.get_set(100)
 
     ### get two images with same label ###
     print(images)
     im0 = images[0]
+    print((f'Image shape: {im0[0].shape}'))
     ### remove im0 from the set to avoid matching with itself ###
     images.remove(im0)
     label0 = images[1]

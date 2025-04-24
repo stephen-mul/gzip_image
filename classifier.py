@@ -5,7 +5,15 @@ from tqdm import tqdm
 from utils import normalise
 
 class classifier:
-    def __init__(self, training_set, testing_set, k, mode, normalise_combined, compression_type) -> None:
+    def __init__(
+            self, 
+            training_set, 
+            testing_set, 
+            k, 
+            mode, 
+            normalise_combined, 
+            compression_type,
+            ) -> None:
         self.training_set = training_set
         self.testing_set = testing_set
         self.k = k
@@ -51,6 +59,36 @@ class classifier:
             #sorted_idx = np.argsort(np.array(distance_from_x1))
             sorted_idx = np.argsort(distance_from_x1)
             #count += 1
+            k_classes = []
+            for n in np.arange(self.k):
+                n_training = sorted_idx[n]
+                _, label = self.training_set[n_training]
+                k_classes.append(int(label))
+            test_labels.append((y1, k_classes))
+        return test_labels
+    
+class MSEclassifier:
+    def __init__(
+            self, 
+            training_set, 
+            testing_set, 
+            k, 
+            ) -> None:
+        self.training_set = training_set
+        self.testing_set = testing_set
+        self.k = k
+
+    def classify(self):
+        test_labels = []
+        for (x1 , y1) in tqdm(self.testing_set):
+            x1 = x1.numpy()
+            distance_from_x1 = np.zeros(len(self.training_set))
+            count = 0
+            for (x2 , _) in self.training_set:
+                x2 = x2.numpy()
+                distance_from_x1[count] = np.mean((x1-x2)**2)
+                count+=1
+            sorted_idx = np.argsort(distance_from_x1)
             k_classes = []
             for n in np.arange(self.k):
                 n_training = sorted_idx[n]
