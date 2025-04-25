@@ -49,15 +49,16 @@ def main():
     test_size = config['n_test']
     k = config['k']
 
-    if config['dataset'] =='MNIST':
+    if config['dataloader']['dataset'] =='MNIST':
         from dataloaders import mnist_loader
         train_loader = mnist_loader(batch=1, train=True)
-        test_loader = mnist_loader(batch=1, train=False)
-    elif config['dataset'] =='CIFAR10':
+        test_loader = mnist_loader(batch=1, train=False, rotation=config['dataloader']['rotation'])
+        print(f'test loader rotation: {config["dataloader"]["rotation"]}')
+    elif config['dataloader']['dataset'] =='CIFAR10':
         from dataloaders import cifar10_loader
         train_loader = cifar10_loader(batch=1, train=True)
         test_loader = cifar10_loader(batch=1, train=False)
-    elif config['dataset'] =='FASHION':
+    elif config['dataloader']['dataset'] =='FASHION':
         from dataloaders import fashion_mnist_loader
         train_loader = fashion_mnist_loader(batch=1, train=True)
         test_loader = fashion_mnist_loader(batch=1, train=False)
@@ -72,6 +73,7 @@ def main():
                                          k=k, 
                                          )
     else:
+        print('Using gzip classifier')
         mnist_classifier = classifier(training_set, 
                                     testing_set, 
                                     k=k, 

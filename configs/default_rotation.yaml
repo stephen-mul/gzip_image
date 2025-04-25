@@ -1,5 +1,7 @@
 ### basic settings ###
-dataset: MNIST
+dataloader:
+  dataset: MNIST
+  rotation: True
 n_train: 60000
 n_test: 100
 k: 5
@@ -8,4 +10,4 @@ normalise_combined: False
 compression_type: gzip
 experiment_name: None
 output_dir: /home/stephen/local_workdir/personal/gzip_results/default
-classifier: MSE
+classifier: gzip
